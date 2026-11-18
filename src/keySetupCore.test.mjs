@@ -78,6 +78,15 @@ test('the status payload reports presence without any credential material', () =
   assert.equal(status.setCount, 1);
 });
 
+test('Groq appears in Provider Settings as a server-side typed-chat credential', () => {
+  const groq = KEY_SETUP_KEYS.find((key) => key.id === 'groq');
+  assert.ok(groq);
+  assert.deepEqual(groq.envVars, ['GROQ_API_KEY']);
+  assert.equal(groq.clientExposed, undefined);
+  assert.match(groq.getUrl, /console\.groq\.com\/keys/);
+  assert.match(groq.unlocks, /typed AI chat/);
+});
+
 test('whitespace-only env values do not count as configured', () => {
   const status = keySetupStatus({ OPENAI_API_KEY: '   ' });
   assert.equal(status.keys.find((key) => key.id === 'openai').set, false);
