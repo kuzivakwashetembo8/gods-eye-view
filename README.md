@@ -372,7 +372,7 @@ Choose a first-run mission, or try these in order. Your starting basemap depends
 <details>
 <summary><b>Providers, chat, ChatGPT OAuth and the voice check</b></summary>
 
-The standalone app offers **OpenAI** and **Gemini** under **AI Provider** in Settings, one choice shared by voice and chat. OpenAI is the initial default; your choice is saved in this browser. To use Gemini, add `GEMINI_API_KEY` in Provider Settings or your local `.env` file, then select Gemini. `GEMINI_LIVE_MODEL` defaults to `gemini-3.8-live`. The permanent key stays on the local server, which issues a constrained, single-use session credential.
+The standalone app offers **OpenAI** and **Gemini** for voice, plus **Groq** for typed chat only, under **AI Provider** in Settings. OpenAI is the initial default; your choice is saved in this browser. To use Gemini, add `GEMINI_API_KEY` in Provider Settings or your local `.env` file, then select Gemini. `GEMINI_LIVE_MODEL` defaults to `gemini-3.8-live`. Provider API keys stay on the local server; only OpenAI and Gemini issue voice-session credentials.
 
 Changing provider ends the current conversation. If voice is on, the new provider starts with the same open-mic or push-to-talk mode; a held Space key is not carried over. Gemini uses the same map actions and captions, but has no OpenAI cost meter or MINI tier. When Gemini reports that its session has expired, start voice again for a new conversation. The AI Provider setting does not change the OpenAI-backed AI HUD summary.
 
