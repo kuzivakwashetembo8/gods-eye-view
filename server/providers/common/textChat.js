@@ -63,6 +63,8 @@ export function createTextChatHandler({
   providerPerMin = 30,
   // Returns { error, code } when the route must refuse before any key is used.
   refuse = () => null,
+  resolveRequestOrigin = (req) =>
+    isGeminiRequestOriginAllowed(req, resolveHost(), resolveAllowedHosts()),
   now = Date.now,
   timeoutMs = 60000,
 } = {}) {
@@ -100,10 +102,7 @@ export function createTextChatHandler({
     let response;
     let usage = null;
     try {
-      if (
-        !isGeminiRequestOriginAllowed(req, resolveHost(), resolveAllowedHosts())
-      )
-        return reply(403, FAILURE);
+      if (!resolveRequestOrigin(req)) return reply(403, FAILURE);
       const refusal = refuse();
       if (refusal) return reply(503, refusal.error, refusal.code);
       const apiKey = String(resolveApiKey() || '').trim();
