@@ -56,6 +56,8 @@ Do not prefix the key with `VITE_`. It must never be bundled into browser code. 
 - `src/voice/groqSession.js` — added a typed-only session adapter; it rejects voice starts and never initializes audio.
 - `src/voice/providerCapabilities.js` — labelled Groq as typed-chat-only in the provider catalogue and declared that it cannot resume voice.
 - `src/voice/commands.js` — registered the Groq session factory.
+- `src/voice/providerCommands.js` — prevents an active voice session from being resumed when switching to Groq; typed-chat sessions remain resumable.
+- `src/voice/providerCommands.test.mjs` — verifies that switching from active voice to Groq does not attempt microphone startup.
 - `src/voice/sessionCommands.js` — hides the microphone control for text-only providers and provides typed-chat-only status/help text.
 - `src/ui/views/panels/VoiceControl.vue` — passes the button's hidden state through to the rendered control, changes the provider note for Groq, and hides voice-only preferences when Groq is selected.
 - `src/standalone/tools.js` — enabled Groq in the standalone AI Provider list.
