@@ -96,7 +96,8 @@ export function createOpenAiChatHandler({
   overpassConfigured = () => resolveOverpassUpstreams().length > 0,
   resolveApiKey = () => process.env.OPENAI_API_KEY,
   resolveChatModel = () => process.env.OPENAI_CHAT_MODEL || 'gpt-4.1-mini',
-  resolveProviderRateLimit = () => process.env[`GEV_RATELIMIT_${provider.toUpperCase()}_PER_MIN`],
+  resolveProviderRateLimit = () =>
+    process.env[`GEV_RATELIMIT_${provider.toUpperCase()}_PER_MIN`],
   environment = process.env,
   provider = 'openai',
   endpoint = 'https://api.openai.com/v1/chat/completions',
