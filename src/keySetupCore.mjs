@@ -74,6 +74,14 @@ export const KEY_SETUP_KEYS = Object.freeze([
     tier: 'metered',
   }),
   Object.freeze({
+    id: 'groq',
+    title: 'GROQ', // i18n-ignore: provider product name
+    unlocks: msg('Fast typed AI chat — no voice support'),
+    getUrl: 'https://console.groq.com/keys',
+    envVars: Object.freeze(['GROQ_API_KEY']),
+    tier: 'metered',
+  }),
+  Object.freeze({
     id: 'aisstream',
     title: 'AISSTREAM', // i18n-ignore: provider product name
     unlocks: msg('Live ships, worldwide'),
