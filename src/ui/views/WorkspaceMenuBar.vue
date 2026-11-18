@@ -1,11 +1,8 @@
 <script setup>
 const menus = [
  {label:'File',items:[{label:'New scene',action:'new-scene',shortcut:'Ctrl+N'},{label:'Import scenes…',action:'import-scenes'},{label:'Export scenes…',action:'export-scenes',shortcut:'Ctrl+S'}]},
- {label:'View',items:[{label:'Visual presets',children:[{label:'Normal',action:'style-normal',shortcut:'1'},{label:'CRT',action:'style-retro',shortcut:'2'},{label:'Night vision',action:'style-surveillance',shortcut:'3'},{label:'Thermal',action:'style-thermal',shortcut:'4'},{label:'Anime',action:'style-anime',shortcut:'5'},{label:'Noir',action:'style-noir',shortcut:'6'}]},{label:'Location',action:'location'},{label:'Context inspector',action:'context'},{label:'Data layers',action:'data-layers'}]},
- {label:'Explore',items:[{label:'Contacts',action:'contacts'},{label:'Space missions',action:'missions'},{label:'Weather panel',action:'weather'},{label:'News panel',action:'news'},{label:'Recent imagery',action:'imagery'}]},
- {label:'Layers',items:[{label:'Data layers',action:'data-layers'},{label:'Utilities',action:'utilities'},{label:'CCTV coverage',action:'cctv'},{label:'Street level',action:'street-level'}]},
- {label:'Tools',items:[{label:'Scene authoring',action:'authoring'},{label:'AI chat',action:'chat'},{label:'Voice assistant',action:'voice'},{label:'Provider settings',action:'provider-settings'}]},
- {label:'Help',items:[{label:'Configure API keys…',action:'provider-settings'},{label:'Return to globe home',action:'home'}]}
+ {label:'View',items:[{label:'Visual presets',children:[{label:'Normal',action:'style-normal',shortcut:'1'},{label:'CRT',action:'style-retro',shortcut:'2'},{label:'Night vision',action:'style-surveillance',shortcut:'3'},{label:'Thermal',action:'style-thermal',shortcut:'4'},{label:'Anime',action:'style-anime',shortcut:'5'},{label:'Noir',action:'style-noir',shortcut:'6'}]},{label:'Location',action:'location'},{label:'Data layers',action:'data-layers'},{label:'Utilities',action:'utilities'},{label:'CCTV coverage',action:'cctv'},{label:'Street level',action:'street-level'},{label:'Weather',action:'weather'},{label:'News',action:'news'},{label:'Recent imagery',action:'imagery'},{label:'Clear selected layers',action:'clear-layers'},{label:'Share link',action:'share'},{label:'Toggle map tilt',action:'tilt'},{label:'Reset globe view',action:'reset'}]},
+ {label:'Tools',items:[{label:'Context inspector',action:'context'},{label:'Contacts',action:'contacts'},{label:'Space missions',action:'missions'},{label:'Scene authoring',action:'authoring'},{label:'AI chat',action:'chat'},{label:'Voice assistant',action:'voice'},{label:'Provider settings',action:'provider-settings'}]}
 ];
 function click(selector){const el=document.querySelector(selector);if(el&&!el.disabled&&el.getAttribute('aria-disabled')!=='true')el.click();}
 function openPanel(id){const panel=document.getElementById(id);if(!panel)return;const collapsed=panel.classList.contains('collapsed')||panel.classList.contains('ui-panel--collapsed');if(collapsed)panel.querySelector('[data-collapse-target]')?.click();}
@@ -30,6 +27,10 @@ function run(action){
  case 'chat':click('#gev-chat-button');break;
  case 'voice':click('#gev-voice-button');break;
  case 'provider-settings':click('#key-setup-chip');break;
+ case 'clear-layers':click('#clear-selected-layers');break;
+ case 'share':click('#share-btn');break;
+ case 'tilt':click('#tilt-map-view');break;
+ case 'reset':click('#reset-globe-view');break;
  case 'home':click('.title-logo');break;
  }
 }
