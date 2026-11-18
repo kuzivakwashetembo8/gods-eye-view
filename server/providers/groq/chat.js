@@ -1,11 +1,4 @@
-import {
-  chatSchema,
-  createOpenAiChatHandler,
-} from '../openai/chat.js';
-import { offeredTools, GEV_REALTIME_TOOLS } from '../openai/tools.js';
-import { textInstructions } from '../common/textInstructions.js';
-import { invalidCalls } from '../common/textTools.js';
-import { resolveOverpassUpstreams } from '../overpass/constants.js';
+import { createOpenAiChatHandler } from '../openai/chat.js';
 
 const object = (value) =>
   value && typeof value === 'object' && !Array.isArray(value);
