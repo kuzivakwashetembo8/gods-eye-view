@@ -40,3 +40,11 @@ html,body{background:#1e1e1e}
 .gev-menu-subpopup{top:-5px;left:calc(100% - 1px);min-width:190px}
 .gev-menu-title{margin-left:auto;color:#858585;font-size:12px}
 @media(max-width:640px){#gev-workspace-menubar{gap:2px;padding:0 5px}.gev-menu-brand,.gev-menu-title{display:none}.gev-menu-trigger{padding:0 7px;font-size:12px}.gev-menu-popup{min-width:190px}.gev-menu-subpopup{left:auto;right:calc(100% - 1px)}#title-bar{top:40px}}
+
+/* Quiet workspace: keep the globe dominant and move secondary actions into menus. */
+#top-center-actions{display:none!important}
+#style-indicator{display:none!important}
+#gev-workspace-menubar{gap:8px}
+.gev-menu-brand{display:none}
+.gev-menu-title{margin-left:auto}
+@media(max-width:640px){#gev-workspace-menubar{gap:2px}.gev-menu-title{display:none}}
