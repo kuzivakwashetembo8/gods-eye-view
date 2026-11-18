@@ -26,7 +26,11 @@ test('Groq session is text-only and uses the Groq chat endpoint', async () => {
   session.start({ textOnly: true });
   assert.equal(session.getStartOptions().textOnly, true);
   assert.equal(session.sendText('Hello'), true);
-  for (let i = 0; i < 8 && !events.some((event) => event.type === 'completion'); i++)
+  for (
+    let i = 0;
+    i < 8 && !events.some((event) => event.type === 'completion');
+    i++
+  )
     await new Promise((resolve) => setImmediate(resolve));
   assert.equal(requests[0].url, '/api/groq/chat');
   assert.deepEqual(requests[0].body.messages, [
