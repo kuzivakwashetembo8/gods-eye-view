@@ -80,7 +80,7 @@ const frameStyle = (panel) => ({
           <span id="gev-voice-cost-value" class="gev-voice-cost-value" :hidden="view.cost.hidden" :data-level="view.cost.level" :title="view.cost.title">{{ view.cost.text }}</span>
         </div>
       </div>
-      <UiButton id="gev-voice-button" :aria-label="view.button.label" :pressed="view.button.pressed ?? undefined" aria-describedby="gev-voice-help" @click="emit('button')">
+      <UiButton id="gev-voice-button" :hidden="view.button.hidden" :aria-label="view.button.label" :pressed="view.button.pressed ?? undefined" aria-describedby="gev-voice-help" @click="emit('button')">
         <span class="gev-mic-orbit"><img src="/mic.svg" alt="" /></span>
         <span class="gev-mic-label">{{ view.mic.text }}</span>
       </UiButton>
@@ -115,8 +115,8 @@ const frameStyle = (panel) => ({
         </div>
         <div class="gev-voice-panel-body ui-scroll">
           <section id="gev-voice-preview-panel" role="tabpanel" aria-labelledby="gev-voice-preview-tab" :hidden="view.voicePanel.previewHidden">
-            <p id="gev-voice-preview-empty" :hidden="view.previewEmpty.hidden">{{ view.previewEmpty.text }}</p>
-            <div class="gev-voice-hints" role="group" :aria-label="t('Try saying')"><small>{{ t('Try saying') }}</small><q>{{ t('What am I looking at?') }}</q><q>{{ t('Fly to Tokyo') }}</q><q>{{ t('Show live flights') }}</q></div>
+            <p id="gev-voice-preview-empty" :hidden="view.previewEmpty.hidden">{{ view.root.provider === 'groq' ? t('Groq is available for typed chat only; voice settings are unavailable.') : view.previewEmpty.text }}</p>
+            <div class="gev-voice-hints" role="group" :hidden="view.root.provider === 'groq'" :aria-label="t('Try saying')"><small>{{ t('Try saying') }}</small><q>{{ t('What am I looking at?') }}</q><q>{{ t('Fly to Tokyo') }}</q><q>{{ t('Show live flights') }}</q></div>
       <VoiceCard :card="view.card" @dismiss="emit('card-dismiss')" />
           </section>
           <section id="gev-voice-settings-panel" role="tabpanel" aria-labelledby="gev-voice-settings-tab" :hidden="view.voicePanel.settingsHidden">
@@ -124,12 +124,12 @@ const frameStyle = (panel) => ({
               <span>{{ t('AI Provider') }}</span>
               <UiSelect id="gev-voice-provider" class="gev-field" :aria-label="t('AI Provider')" :title="view.provider.title" :model-value="view.provider.value" @update:model-value="emit('provider-change', $event)"><option v-for="option in view.provider.options" :key="option.value" :value="option.value">{{ option.label }}</option></UiSelect>
             </label>
-            <p class="gev-voice-settings-note">{{ t('The selected AI provider is shared by voice and chat.') }}</p>
+            <p class="gev-voice-settings-note">{{ view.root.provider === 'groq' ? t('Groq is available for typed chat only; voice settings are unavailable.') : t('The selected AI provider is shared by voice and chat.') }}</p>
             <div id="gev-settings-chat">
               <label class="gev-voice-preference gev-voice-preference-toggle"><input id="gev-chat-quick" type="checkbox" v-checked="view.chat.quickChecked" @change="emit('chat-quick-change', $event.target.checked)" /><span>{{ t('Show quick commands') }}</span></label>
               <p>{{ t('Chat replies are silent. No microphone access is needed.') }}</p>
             </div>
-            <div id="gev-settings-voice">
+            <div id="gev-settings-voice" :hidden="view.root.provider === 'groq'">
             <label class="gev-voice-preference gev-voice-preference-toggle"><input id="gev-voice-preview-enabled" type="checkbox" aria-describedby="gev-voice-preview-note" v-checked="view.preferences.previewChecked" @change="emit('preview-change', $event.target.checked)" /><span>{{ t('Show Voice Preview') }}</span></label>
             <p id="gev-voice-preview-note" class="gev-voice-settings-note">{{ view.preferences.previewNote }}</p>
             <div class="gev-voice-timeout-group">

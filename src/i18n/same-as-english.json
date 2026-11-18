@@ -56,7 +56,11 @@
     "{n} hPa",
     "{kind} {name}",
     "{speed} {direction}",
-    "3D"
+    "3D",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "de": [
     "1090 MHz",
@@ -296,7 +300,11 @@
     "{n} mm",
     "Route",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "es": [
     "1 min/s",
@@ -490,7 +498,11 @@
     "{n} min",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "fr": [
     "1 min/s",
@@ -748,7 +760,11 @@
     "{n} min",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "it": [
     "1 min/s",
@@ -982,7 +998,11 @@
     "{n} min",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "ja": [
     "1090 MHz",
@@ -1066,7 +1086,11 @@
     "{n} hPa",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "pt": [
     "1 min/s",
@@ -1260,7 +1284,11 @@
     "{n} min",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "ru": [
     "1900–1945",
@@ -1305,7 +1333,11 @@
     "M {n}",
     "{n}%",
     "{kind} {name}",
-    "3D"
+    "3D",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "sv": [
     "STATION",
@@ -1498,7 +1530,11 @@
     "{n} min",
     "{n} mm",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "uk": [
     "1900–1945",
@@ -1537,7 +1573,11 @@
     "M {n}",
     "{n}%",
     "{kind} {name}",
-    "3D"
+    "3D",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "zh-CN": [
     "1090 MHz",
@@ -1622,7 +1662,11 @@
     "{n} MW",
     "{n}%",
     "{n} hPa",
-    "3D"
+    "3D",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "zh-Hant": [
     "1090 MHz",
@@ -1707,7 +1751,11 @@
     "{n} MW",
     "{n}%",
     "{n} hPa",
-    "3D"
+    "3D",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "he": [
     "{speed} kn",
@@ -1824,6 +1872,10 @@
     "{n} hPa",
     "{kind} {name}",
     "3D",
-    "KT"
+    "KT",
+    "Fast typed AI chat — no voice support",
+    "Groq supports typed chat only; voice is unavailable.",
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ]
 }

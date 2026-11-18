@@ -63,6 +63,56 @@ export const textProtocols = {
           }
         : item,
   },
+  groq: {
+    endpoint: '/api/groq/chat',
+    keyEnv: 'GROQ_API_KEY',
+    user: (content) => ({ role: 'user', content }),
+    note: (content) => ({ role: 'assistant', content }),
+    isUser: (item) => item.role === 'user',
+    request: (messages) => ({ messages }),
+    decode(data) {
+      const content = data?.content;
+      if (
+        content?.role !== 'assistant' ||
+        (content.content != null && typeof content.content !== 'string') ||
+        (content.tool_calls !== undefined && !Array.isArray(content.tool_calls))
+      )
+        throw Error('Invalid response');
+      return {
+        content,
+        text: content.content || '',
+        calls: (content.tool_calls || []).map((call) => {
+          let args;
+          try {
+            args = JSON.parse(call.function.arguments);
+          } catch {
+            /* Server supplies the paired validation error. */
+          }
+          return { id: call.id, name: call.function.name, args };
+        }),
+        finished: data.finishReason === 'stop',
+      };
+    },
+    results: (pairs) =>
+      pairs.map(({ call, result }) => ({
+        role: 'tool',
+        tool_call_id: call.id,
+        content: JSON.stringify(result),
+      })),
+    compactResult(item, maxBytes) {
+      if (item.role !== 'tool') return item;
+      let result;
+      try {
+        result = JSON.parse(item.content);
+      } catch {
+        result = { ok: false, error: 'Tool result could not be read' };
+      }
+      return {
+        ...item,
+        content: JSON.stringify(boundedToolResult(result, maxBytes)),
+      };
+    },
+  },
   openai: {
     endpoint: '/api/openai/chat',
     keyEnv: 'OPENAI_API_KEY',

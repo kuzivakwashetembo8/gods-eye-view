@@ -1,6 +1,10 @@
 export const VOICE_PROVIDERS = Object.freeze({
   openai: Object.freeze({ label: 'OpenAI' }), // i18n-ignore: provider product name
   gemini: Object.freeze({ label: 'Gemini' }), // i18n-ignore: provider product name
+  groq: Object.freeze({
+    label: 'Groq · typed chat only',
+    textOnlyOnly: true,
+  }), // i18n-ignore: provider product name
 });
 
 /** Optional providers require an explicit host opt-in and an available factory. */

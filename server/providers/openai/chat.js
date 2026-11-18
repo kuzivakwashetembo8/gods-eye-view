@@ -96,31 +96,42 @@ export function createOpenAiChatHandler({
   overpassConfigured = () => resolveOverpassUpstreams().length > 0,
   resolveApiKey = () => process.env.OPENAI_API_KEY,
   resolveChatModel = () => process.env.OPENAI_CHAT_MODEL || 'gpt-4.1-mini',
-  resolveProviderRateLimit = () => process.env.GEV_RATELIMIT_OPENAI_PER_MIN,
+  resolveProviderRateLimit = () =>
+    process.env[`GEV_RATELIMIT_${provider.toUpperCase()}_PER_MIN`],
   environment = process.env,
+  provider = 'openai',
+  endpoint = 'https://api.openai.com/v1/chat/completions',
+  includeStore = true,
+  customRefuse,
   ...options
 } = {}) {
   return createTextChatHandler({
     ...options,
-    provider: 'openai',
+    provider,
     resolveApiKey,
     resolveProviderRateLimit,
     providerPerMin: OPENAI_DEFAULT_PER_MIN,
-    // Chat can only bill the API key, which this operator lock forbids.
-    refuse() {
-      let error =
-        'ChatGPT OAuth is required by GEV_PREFER_CODEX_OAUTH, and typed OpenAI chat needs an API key.';
-      try {
-        if (!preferCodexOAuth(environment)) return null;
-      } catch (invalid) {
-        error = invalid.message;
-      }
-      return { error, code: 'CODEX_OAUTH_REQUIRED' };
-    },
+    // Groq supplies no custom refusal; OpenAI can be operator-locked to OAuth.
+    refuse:
+      customRefuse === null
+        ? () => null
+        : customRefuse ||
+          (() => {
+            let error =
+              'ChatGPT OAuth is required by GEV_PREFER_CODEX_OAUTH, and typed OpenAI chat needs an API key.';
+            try {
+              if (!preferCodexOAuth(environment)) return null;
+            } catch (invalid) {
+              error = invalid.message;
+            }
+            return { error, code: 'CODEX_OAUTH_REQUIRED' };
+          }),
     prepare(input) {
       const model = String(resolveChatModel()).trim();
       if (
-        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}$/.test(model) ||
+        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}(?:\/[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119})?$/.test(
+          model,
+        ) ||
         /realtime|audio|tts/i.test(model)
       )
         return { errorStatus: 503 };
@@ -132,13 +143,14 @@ export function createOpenAiChatHandler({
         return null;
       const overpass = overpassConfigured();
       return {
-        endpoint: 'https://api.openai.com/v1/chat/completions',
+        endpoint,
         headers: (key) => ({ Authorization: `Bearer ${key}` }),
         body: {
           model,
           n: 1,
           stream: false,
-          store: false,
+          ...(provider === 'groq' ? { parallel_tool_calls: false } : {}),
+          ...(includeStore ? { store: false } : {}),
           max_completion_tokens: 4096,
           messages: [
             {

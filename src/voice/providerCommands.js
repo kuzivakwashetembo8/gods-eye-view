@@ -1,4 +1,7 @@
-import { supportedVoiceProviders } from './providerCapabilities.js';
+import {
+  supportedVoiceProviders,
+  VOICE_PROVIDERS,
+} from './providerCapabilities.js';
 
 const STORAGE_KEY = 'gev.voice.provider';
 
@@ -83,7 +86,12 @@ export function createProviderCommands(options, { bind, factories, storage }) {
       /* Storage is optional. */
     }
     mount(presentation);
-    if (resume && !disposed && provider === next)
+    if (
+      resume &&
+      !disposed &&
+      provider === next &&
+      (!VOICE_PROVIDERS[provider].textOnlyOnly || textOnly)
+    )
       void current.session.start({
         pushToTalk,
         ...(textOnly ? { textOnly } : {}),
