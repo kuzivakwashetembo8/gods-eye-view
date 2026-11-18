@@ -17,12 +17,12 @@ test('Groq session is text-only and uses the Groq chat endpoint', async () => {
       return Response.json({
         content: { role: 'assistant', content: 'Ready.' },
         finishReason: 'stop',
-        usage: { inputTokens: 2, outputTokens: 2, totalTokens: 4 },
+        usage: { prompt_tokens: 2, completion_tokens: 2, total_tokens: 4 },
       });
     },
   });
   assert.equal(session.capabilities.textOnlyOnly, true);
-  await assert.rejects(session.start(), /typed chat only/);
+  assert.throws(() => session.start(), /typed chat only/);
   session.start({ textOnly: true });
   assert.equal(session.getStartOptions().textOnly, true);
   assert.equal(session.sendText('Hello'), true);
