@@ -57,7 +57,7 @@ Do not prefix the key with `VITE_`. It must never be bundled into browser code. 
 - `src/voice/providerCapabilities.js` — labelled Groq as typed-chat-only in the provider catalogue.
 - `src/voice/commands.js` — registered the Groq session factory.
 - `src/voice/sessionCommands.js` — hides the microphone control for text-only providers and provides typed-chat-only status/help text.
-- `src/ui/views/panels/VoiceControl.vue` — passes the button's hidden state through to the rendered control.
+- `src/ui/views/panels/VoiceControl.vue` — passes the button's hidden state through to the rendered control, changes the provider note for Groq, and hides voice-only preferences when Groq is selected.
 - `src/standalone/tools.js` — enabled Groq in the standalone AI Provider list.
 
 ### Tests
@@ -71,7 +71,7 @@ Do not prefix the key with `VITE_`. It must never be bundled into browser code. 
 
 - `.env.example` — documented Groq key, model, and rate-limit variables.
 - `SECURITY.md` — documented server-only handling of `GROQ_API_KEY`.
-- `README.md` — documented Groq's typed-chat-only capability and configuration.
+- `README.md` — documented Groq's typed-chat-only capability, API-key table entry, and configuration.
 - `src/i18n/same-as-english.json` — marked the new Groq UI messages as intentionally untranslated for the existing locale catalogs.
 - `documentations/README.md` — created the implementation log index.
 - `documentations/2026-11-18-groq-typed-chat.md` — this detailed change record.
