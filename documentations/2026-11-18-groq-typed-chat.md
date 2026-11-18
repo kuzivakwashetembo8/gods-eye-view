@@ -59,7 +59,7 @@ Do not prefix the key with `VITE_`. It must never be bundled into browser code. 
 - `src/voice/providerCommands.js` — prevents an active voice session from being resumed when switching to Groq; typed-chat sessions remain resumable.
 - `src/voice/providerCommands.test.mjs` — verifies that switching from active voice to Groq does not attempt microphone startup.
 - `src/voice/sessionCommands.js` — hides the microphone control for text-only providers and provides typed-chat-only status/help text.
-- `src/ui/views/panels/VoiceControl.vue` — passes the button's hidden state through to the rendered control, changes the provider note for Groq, and hides voice-only preferences when Groq is selected.
+- `src/ui/views/panels/VoiceControl.vue` — passes the button's hidden state through to the rendered control, changes the provider note for Groq, hides voice-only preferences, and removes voice-only preview prompts when Groq is selected.
 - `src/standalone/tools.js` — enabled Groq in the standalone AI Provider list.
 
 ### Tests
