@@ -124,7 +124,7 @@ export function createOpenAiChatHandler({
     prepare(input) {
       const model = String(resolveChatModel()).trim();
       if (
-        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}$/.test(model) ||
+        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}(?:\/[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119})?$/.test(model) ||
         /realtime|audio|tts/i.test(model)
       )
         return { errorStatus: 503 };
@@ -142,6 +142,7 @@ export function createOpenAiChatHandler({
           model,
           n: 1,
           stream: false,
+          ...(provider === 'groq' ? { parallel_tool_calls: false } : {}),
           ...(includeStore ? { store: false } : {}),
           max_completion_tokens: 4096,
           messages: [
