@@ -1,7 +1,6 @@
 import { createOpenAiChatHandler } from '../openai/chat.js';
-
-const object = (value) =>
-  value && typeof value === 'object' && !Array.isArray(value);
+import { GEV_REALTIME_TOOLS } from '../openai/tools.js';
+import { resolveOverpassUpstreams } from '../overpass/constants.js';
 
 export const GROQ_DEFAULT_CHAT_MODEL = 'openai/gpt-oss-20b';
 
