@@ -59,7 +59,8 @@
     "3D",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "de": [
     "1090 MHz",
@@ -302,7 +303,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "es": [
     "1 min/s",
@@ -499,7 +501,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "fr": [
     "1 min/s",
@@ -760,7 +763,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "it": [
     "1 min/s",
@@ -997,7 +1001,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "ja": [
     "1090 MHz",
@@ -1084,7 +1089,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "pt": [
     "1 min/s",
@@ -1281,7 +1287,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "ru": [
     "1900–1945",
@@ -1329,7 +1336,8 @@
     "3D",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "sv": [
     "STATION",
@@ -1525,7 +1533,8 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "uk": [
     "1900–1945",
@@ -1567,7 +1576,8 @@
     "3D",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "zh-CN": [
     "1090 MHz",
@@ -1655,7 +1665,8 @@
     "3D",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "zh-Hant": [
     "1090 MHz",
@@ -1743,7 +1754,8 @@
     "3D",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ],
   "he": [
     "{speed} kn",
@@ -1863,6 +1875,7 @@
     "KT",
     "Fast typed AI chat — no voice support",
     "Groq supports typed chat only; voice is unavailable.",
-    "Groq typed chat selected"
+    "Groq typed chat selected",
+    "Groq is available for typed chat only; voice settings are unavailable."
   ]
 }
