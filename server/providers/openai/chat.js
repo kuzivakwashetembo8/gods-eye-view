@@ -111,7 +111,7 @@ export function createOpenAiChatHandler({
     resolveProviderRateLimit,
     providerPerMin: OPENAI_DEFAULT_PER_MIN,
     // Groq supplies no custom refusal; OpenAI can be operator-locked to OAuth.
-    refuse: customRefuse || (() => {
+    refuse: customRefuse === null ? () => null : customRefuse || (() => {
       let error =
         'ChatGPT OAuth is required by GEV_PREFER_CODEX_OAUTH, and typed OpenAI chat needs an API key.';
       try {
