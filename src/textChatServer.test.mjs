@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import { once } from 'node:events';
 import { createGeminiChatHandler } from '../server/providers/gemini/chat.js';
+import { createGroqChatHandler } from '../server/providers/groq/chat.js';
 import {
   chatSchema,
   createOpenAiChatHandler,
@@ -62,6 +63,32 @@ const providers = {
   },
   openai: {
     create: createOpenAiChatHandler,
+    input: { messages: [{ role: 'user', content: 'Hello' }] },
+    reply: (bad = false) => ({
+      choices: [
+        {
+          message: {
+            role: 'assistant',
+            content: null,
+            tool_calls: [
+              {
+                type: 'function',
+                id: 'c',
+                function: {
+                  name: 'fly_to',
+                  arguments: bad ? '{' : '{"lat":1}',
+                },
+              },
+            ],
+          },
+          finish_reason: 'tool_calls',
+        },
+      ],
+      usage: { prompt_tokens: 7, completion_tokens: 3, total_tokens: 10 },
+    }),
+  },
+  groq: {
+    create: createGroqChatHandler,
     input: { messages: [{ role: 'user', content: 'Hello' }] },
     reply: (bad = false) => ({
       choices: [
@@ -198,6 +225,14 @@ for (const [name, provider] of Object.entries(providers)) {
       (await f.send({ ...provider.input, model: 'caller-model' })).status,
       400,
     );
+    if (name === 'groq') {
+      assert.equal(
+        f.calls[0].url,
+        'https://api.groq.com/openai/v1/chat/completions',
+      );
+      assert.equal(f.calls[0].body.model, 'openai/gpt-oss-20b');
+      assert.equal(f.calls[0].body.store, undefined);
+    }
     if (name === 'openai') {
       assert.equal(
         f.calls[0].url,
