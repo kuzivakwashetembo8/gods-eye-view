@@ -1,6 +1,7 @@
 import { createVoiceCommands as bindVoiceCommands } from './sessionCommands.js';
 import { createRealtimeSession } from './realtimeSession.js';
 import { createGeminiSession } from './geminiSession.js';
+import { createGroqSession } from './groqSession.js';
 import { createProviderCommands } from './providerCommands.js';
 import { createVoicePanelHost } from './panel/host.js';
 
