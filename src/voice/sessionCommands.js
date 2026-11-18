@@ -103,7 +103,9 @@ export function createVoiceCommands({
   ui.update('cost', { hidden: !capabilities.costControls });
   if (capabilities.textOnlyOnly) {
     ui.update('button', { hidden: true });
-    ui.update('help', { text: () => t('Groq supports typed chat only; voice is unavailable.') });
+    ui.update('help', {
+      text: () => t('Groq supports typed chat only; voice is unavailable.'),
+    });
     ui.update('detail', { text: () => t('Groq typed chat selected') });
   } else if (!capabilities.pushToTalk) {
     ui.update('button', { label: () => t('Toggle voice control') });
