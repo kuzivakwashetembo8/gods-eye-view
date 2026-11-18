@@ -232,6 +232,8 @@ for (const [name, provider] of Object.entries(providers)) {
       );
       assert.equal(f.calls[0].body.model, 'openai/gpt-oss-20b');
       assert.equal(f.calls[0].body.store, undefined);
+      assert.equal(f.calls[0].body.parallel_tool_calls, false);
+      assert.equal(f.calls[0].options.headers.Authorization, 'Bearer fixture-only');
     }
     if (name === 'openai') {
       assert.equal(
