@@ -8,7 +8,9 @@ export function createGroqSession(options) {
     capabilities: { textOnlyOnly: true, pushToTalk: false },
     start(settings) {
       if (!settings?.textOnly)
-        throw new Error('Groq supports typed chat only; voice is unavailable.');
+        throw new Error(
+          'Groq supports typed chat only; voice is unavailable.',
+        );
       textOnly = true;
       return chat.start();
     },
