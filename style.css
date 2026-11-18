@@ -62,3 +62,5 @@
 @import './src/ui/styles/scope-off-shadows.css';
 @import './src/ui/styles/stories-entry.css';
 @import './src/ui/styles/cyber.css';
+
+@import './src/ui/styles/workspace-ui.css';

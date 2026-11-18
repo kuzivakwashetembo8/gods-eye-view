@@ -21,6 +21,7 @@ import GlobeActions from './panels/GlobeActions.vue';
 import { useGlobeActionsStore } from '../stores/globeActions.js';
 import RenderFailure from './panels/RenderFailure.vue';
 import WorldTimeline from './panels/WorldTimeline.vue';
+import WorkspaceMenuBar from './WorkspaceMenuBar.vue';
 
 // The title's logo goes back to live at the start view, as the shell answers it.
 const globeActions = useGlobeActionsStore();
@@ -65,6 +66,7 @@ const vToastText = {
 
 <template>
   <div id="cesiumContainer"></div>
+  <WorkspaceMenuBar />
   <RenderFailure />
   <div id="world-overlay-root" aria-hidden="true">
     <canvas id="world-overlay-canvas"></canvas>

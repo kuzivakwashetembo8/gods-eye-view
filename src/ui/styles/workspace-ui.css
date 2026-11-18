@@ -1,0 +1,42 @@
+/* Restrained VS Code-inspired chrome; feature owners and globe behavior stay intact. */
+:root{--bg-dark:#1e1e1e;--glass-bg:#252526;--glass-border:#3c3c3c;--glass-border-hover:#555;--accent:#007acc;--accent-dim:rgba(0,122,204,.16);--accent-glow:transparent;--scroll-thumb:#555;--scroll-track:#252526;--text-primary:#ccc;--text-secondary:#9d9d9d;--text-dim:#6e6e6e;--menu-bg:#252526;--panel-radius:4px;--btn-radius:3px;--dock-label-color:#ccc;--dock-label-letter-spacing:.02em}
+html,body{background:#1e1e1e}
+:where(.ui-panel,.panel-collapsible,#gev-chat-panel,#key-setup,.dock-popover-content,.gev-voice-panel,.gev-voice-card,#right-context-rail,#left-panel-stack){color:#ccc;background-color:#252526;border-color:#3c3c3c;border-radius:4px;box-shadow:0 2px 8px #0004;backdrop-filter:none;-webkit-backdrop-filter:none}
+:where(.panel-glow,.title-glow,.key-setup-scanline){display:none!important}
+:where(.panel-header,.ui-panel__head,.gev-chat-header,.key-setup-header){background:#2d2d2d;border-color:#3c3c3c;color:#ccc}
+:where(.panel-title,.ui-panel__title,.gev-chat-header strong){color:#ccc;font-family:var(--font-sans);font-size:.78rem;font-weight:600;letter-spacing:0;text-transform:none;text-shadow:none}
+:where(button,.style-btn,.poi-pill,.map-stack-chip,.context-mode-button){text-shadow:none;box-shadow:none}
+:where(button,.style-btn,.poi-pill,.map-stack-chip):not(:disabled):hover{background-color:#37373d;border-color:#555;color:#fff}
+:where(button,input,select,textarea):focus-visible{outline:1px solid #007acc!important;outline-offset:1px}
+:where(input,select,textarea){color:#ccc;background:#3c3c3c;border:1px solid #3c3c3c;border-radius:3px}
+#title-bar{top:42px;left:12px;right:auto;transform:none;text-align:left;opacity:.92}
+#title-bar h1{font-size:.9rem;letter-spacing:.04em}
+#title-bar .subtitle{display:none}
+#title-bar .title-logo{width:24px;height:24px}
+#style-indicator{top:44px;right:12px}
+#style-indicator .indicator-label{color:#858585}
+#style-indicator .indicator-value{color:#ccc}
+#command-dock{background:rgba(37,37,38,.96);border:1px solid #3c3c3c;border-radius:4px;box-shadow:0 2px 8px #0004}
+#command-dock>:is(#location-bar,#control-panel,#gev-voice-control){border-color:#3c3c3c;background:#252526;box-shadow:none}
+#gev-chat-panel{background:#252526;border-color:#3c3c3c}
+#gev-chat-form{background:#1e1e1e;border-color:#3c3c3c}
+#gev-chat-send{background:#007acc;color:white}
+#gev-chat-header strong{color:#ccc}
+#key-setup{background:#252526;border-color:#3c3c3c}
+#gev-workspace-menubar{position:fixed;inset:0 0 auto;z-index:10000;height:34px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#ccc;background:#181818;border-bottom:1px solid #303030;font:13px/1 var(--font-sans);user-select:none}
+.gev-menu-brand{color:#007acc;font:700 11px/1 var(--font-mono);letter-spacing:.08em;padding-right:6px}
+.gev-menu-root,.gev-menu-popup{list-style:none;margin:0;padding:0}
+.gev-menu-root{display:flex;align-items:stretch;height:100%}
+.gev-menu-group{position:relative;display:flex;align-items:center}
+.gev-menu-trigger{height:28px;padding:0 9px;border:0;border-radius:3px;color:#ccc;background:transparent;font:inherit;cursor:default}
+.gev-menu-group:hover>.gev-menu-trigger,.gev-menu-group:focus-within>.gev-menu-trigger{background:#2a2d2e;color:#fff}
+.gev-menu-popup{position:absolute;top:calc(100% - 1px);left:0;z-index:10001;display:none;min-width:224px;padding:4px;color:#ccc;background:#252526;border:1px solid #454545;border-radius:4px;box-shadow:0 6px 18px #0006}
+.gev-menu-group:hover>.gev-menu-popup,.gev-menu-group:focus-within>.gev-menu-popup,.gev-menu-item:hover>.gev-menu-subpopup,.gev-menu-item:focus-within>.gev-menu-subpopup{display:block}
+.gev-menu-item{position:relative}
+.gev-menu-action{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;min-height:29px;padding:0 9px;border:0;border-radius:3px;color:#ccc;background:transparent;text-align:left;white-space:nowrap;font:inherit;cursor:default}
+.gev-menu-action:hover,.gev-menu-action:focus-visible{color:#fff;background:#094771;outline:none!important}
+.gev-menu-action kbd{color:#858585;font:11px/1 var(--font-sans)}
+.gev-menu-chevron{color:#858585;font-size:17px}
+.gev-menu-subpopup{top:-5px;left:calc(100% - 1px);min-width:190px}
+.gev-menu-title{margin-left:auto;color:#858585;font-size:12px}
+@media(max-width:640px){#gev-workspace-menubar{gap:2px;padding:0 5px}.gev-menu-brand,.gev-menu-title{display:none}.gev-menu-trigger{padding:0 7px;font-size:12px}.gev-menu-popup{min-width:190px}.gev-menu-subpopup{left:auto;right:calc(100% - 1px)}#title-bar{top:40px}}
