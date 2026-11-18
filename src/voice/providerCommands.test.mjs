@@ -252,8 +252,9 @@ function compositionFixture(
         const adapter = {
           identity: `${provider}:${id}`,
           capabilities: {
-            pushToTalk: true,
+            pushToTalk: provider !== 'groq',
             costControls: provider === 'openai',
+            textOnlyOnly: provider === 'groq',
           },
           controller: {
             providerDiagnostic() {
@@ -264,6 +265,7 @@ function compositionFixture(
             const attempt = ++generation;
             instance.starts.push({ ...settings });
             instance.input.pushToTalk = Boolean(settings.pushToTalk);
+            instance.input.textOnly = Boolean(settings.textOnly);
             hooks.emit({
               type: 'state',
               state: 'connecting',
@@ -280,7 +282,8 @@ function compositionFixture(
               if (attempt !== generation || hooks.signal.aborted) return;
               instance.acquired++;
               instance.microphoneEnabled =
-                !instance.input.pushToTalk || instance.input.held;
+                !instance.input.textOnly &&
+                (!instance.input.pushToTalk || instance.input.held);
               hooks.emit({
                 type: 'state',
                 state: 'listening',
@@ -295,9 +298,13 @@ function compositionFixture(
             instance.stops.push({ ...settings });
             order.push(`stop:${id}`);
             instance.input.pushToTalk = instance.input.held = false;
+            instance.input.textOnly = false;
             instance.microphoneEnabled = false;
           },
-          getStartOptions: () => ({ pushToTalk: instance.input.pushToTalk }),
+          getStartOptions: () => ({
+            pushToTalk: instance.input.pushToTalk,
+            ...(instance.input.textOnly ? { textOnly: true } : {}),
+          }),
           bindControls() {
             instance.bound++;
           },
@@ -856,6 +863,22 @@ for (const action of ['stop', 'destroy']) {
     });
   }
 }
+
+test('switching active voice to Groq does not try to resume an unsupported microphone', async (t) => {
+  const f = compositionFixture(t, {
+    supportedProviders: ['openai', 'groq'],
+    factoryProviders: ['openai', 'groq'],
+  });
+  await f.facade.start({ pushToTalk: false });
+  await settle();
+  assert.equal(f.facade.isActive(), true);
+  f.select('groq');
+  await settle();
+  assert.equal(f.facade.provider, 'groq');
+  assert.deepEqual(f.instances[1].starts, []);
+  assert.equal(f.views[1].state.button.hidden, true);
+  assert.equal(f.views[1].state.root.provider, 'groq');
+});
 
 test('a provider switch hands chat Settings to the new mount', async (t) => {
   const f = compositionFixture(t);
