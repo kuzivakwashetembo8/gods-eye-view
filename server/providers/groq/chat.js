@@ -25,7 +25,7 @@ export function createGroqChatHandler({
     customRefuse: () => null,
     resolveApiKey,
     resolveChatModel,
-    resolveProviderRateLimit: () => process.env.GEV_RATELIMIT_GROQ_PER_MIN,
+    resolveProviderRateLimit: () => process.env.GEV_RATELIMIT_GROQ_CHAT_PER_MIN,
     tools,
     annotationGuidance,
     overpassConfigured,
