@@ -104,3 +104,26 @@ Then configure a real `GROQ_API_KEY` locally and verify: selecting Groq opens ty
 - [Groq Tool Use Overview](https://console.groq.com/docs/tool-use/overview) — supported tool-use models and parallel tool-call capability.
 - [Groq Supported Models](https://console.groq.com/docs/models) — model IDs and model catalogue endpoint.
 - [Groq GPT-OSS 20B model card](https://console.groq.com/docs/model/openai/gpt-oss-20b) — model capabilities and default model details.
+
+
+## Production deployment shortcut
+
+**Date:** 2026-11-18  
+**Time:** 21:17 (Africa/Johannesburg, UTC+02:00)  
+**Title:** Expose Groq typed chat on Vercel  
+**Developer:** GPT-6
+
+### Why this was needed
+
+The Vite middleware provider routes are available in local development but are not deployed as Vercel Functions. The production frontend therefore returned 404 for `/api/groq/chat`.
+
+### Additional files changed
+
+- `api/groq/chat.js` — adds a Vercel Node serverless function for `POST /api/groq/chat`. Disables automatic body parsing so the existing bounded streaming request reader remains in control. Requires an exact HTTPS same-origin request and rejects cross-site Fetch Metadata.
+- `server/providers/common/textChat.js` — adds the injectable `resolveRequestOrigin` policy. Existing local OpenAI/Gemini/Groq middleware keeps the original local-host and proxy-header policy; the Vercel Groq function supplies its HTTPS same-origin policy.
+
+### Deployment notes
+
+- The Vercel function reuses the existing Groq adapter, server-side `GROQ_API_KEY`, model selection, request validation, response parsing, and rate limiter.
+- No API key or other secret is embedded in client code.
+- The production endpoint still needs a live POST smoke test after the deployment becomes READY. A GET request should return 405, not 404.
