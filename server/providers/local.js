@@ -21,6 +21,7 @@ import { adsbLolProxy } from './aircraft/adsb-lol.js';
 import { aisLiveProxy } from './vessels/ais-live.js';
 import { trackBackfillProxies } from './aircraft/tracks.js';
 import { openAiRealtimeProxy } from './openai.js';
+import { groqChatProxy } from './groq.js';
 import { geminiLiveProxy } from './gemini.js';
 import { googlePlacesContextProxy } from './places.js';
 import { mapillaryProxy } from './mapillary.js';
