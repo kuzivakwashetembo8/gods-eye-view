@@ -38,7 +38,11 @@ export function createVoiceCommands(options = {}) {
   if (!options.createSession && options.supportedProviders !== undefined)
     commands = createProviderCommands(options, {
       bind,
-      factories: { openai: createRealtimeSession, gemini: createGeminiSession },
+      factories: {
+        openai: createRealtimeSession,
+        gemini: createGeminiSession,
+        groq: createGroqSession,
+      },
     });
   else commands = bind({ createSession: createRealtimeSession, ...options });
   if (panelHost) {
