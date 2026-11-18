@@ -101,7 +101,7 @@ export function createOpenAiChatHandler({
   provider = 'openai',
   endpoint = 'https://api.openai.com/v1/chat/completions',
   includeStore = true,
-  customRefuse = null,
+  customRefuse,
   ...options
 } = {}) {
   return createTextChatHandler({
