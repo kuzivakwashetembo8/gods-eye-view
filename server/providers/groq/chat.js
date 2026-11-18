@@ -6,7 +6,8 @@ export const GROQ_DEFAULT_CHAT_MODEL = 'openai/gpt-oss-20b';
 
 /**
  * Groq's OpenAI-compatible Chat Completions endpoint, used for typed chat only.
- * The shared adapter validates history/tool calls and keeps the API key server-side.
+ * The shared adapter validates history/tool calls and keeps the API key
+ * server-side.
  */
 export function createGroqChatHandler({
   annotationGuidance,
