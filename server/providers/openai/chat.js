@@ -129,7 +129,9 @@ export function createOpenAiChatHandler({
     prepare(input) {
       const model = String(resolveChatModel()).trim();
       if (
-        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}(?:\/[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119})?$/.test(model) ||
+        !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119}(?:\/[a-zA-Z0-9][a-zA-Z0-9._:-]{0,119})?$/.test(
+          model,
+        ) ||
         /realtime|audio|tts/i.test(model)
       )
         return { errorStatus: 503 };
