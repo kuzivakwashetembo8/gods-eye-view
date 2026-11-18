@@ -35,6 +35,27 @@ const wire = {
       items.filter((item) => item.role === 'user').map((item) => item.content),
     keyEnv: 'OPENAI_API_KEY',
   },
+  groq: {
+    final: (text) => ({
+      content: { role: 'assistant', content: text },
+      finishReason: 'stop',
+    }),
+    calls: (count, prefix = 'call') => ({
+      content: {
+        role: 'assistant',
+        content: null,
+        tool_calls: Array.from({ length: count }, (_, index) => ({
+          id: `${prefix}-${index}`,
+          type: 'function',
+          function: { name: 'fly_to', arguments: '{}' },
+        })),
+      },
+    }),
+    items: (body) => body.messages,
+    userTexts: (items) =>
+      items.filter((item) => item.role === 'user').map((item) => item.content),
+    keyEnv: 'GROQ_API_KEY',
+  },
   gemini: {
     final: (text) => ({
       content: { role: 'model', parts: [{ text }] },
@@ -86,7 +107,7 @@ function harness(provider, replies, options = {}) {
   return { chat, events, requests, actions, errors, completions };
 }
 
-for (const provider of ['openai', 'gemini']) {
+for (const provider of ['openai', 'gemini', 'groq']) {
   const w = wire[provider];
 
   test(`${provider}: a failed turn keeps the conversation for the next message`, async () => {
