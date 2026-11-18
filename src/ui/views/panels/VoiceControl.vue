@@ -80,7 +80,7 @@ const frameStyle = (panel) => ({
           <span id="gev-voice-cost-value" class="gev-voice-cost-value" :hidden="view.cost.hidden" :data-level="view.cost.level" :title="view.cost.title">{{ view.cost.text }}</span>
         </div>
       </div>
-      <UiButton id="gev-voice-button" :aria-label="view.button.label" :pressed="view.button.pressed ?? undefined" aria-describedby="gev-voice-help" @click="emit('button')">
+      <UiButton id="gev-voice-button" :hidden="view.button.hidden" :aria-label="view.button.label" :pressed="view.button.pressed ?? undefined" aria-describedby="gev-voice-help" @click="emit('button')">
         <span class="gev-mic-orbit"><img src="/mic.svg" alt="" /></span>
         <span class="gev-mic-label">{{ view.mic.text }}</span>
       </UiButton>
